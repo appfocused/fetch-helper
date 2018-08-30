@@ -121,6 +121,8 @@
     "typescript": "^3.0.1",
     "validate-commit-msg": "^2.12.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
   "peerDependencies": {}
 }
