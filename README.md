@@ -1,4 +1,4 @@
-# Fetch Helper 🏹
+# Fetch Helper
 
 ## Rationale
 
