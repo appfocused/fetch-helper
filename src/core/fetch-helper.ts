@@ -1,10 +1,9 @@
-import { pipe, isUndefined, pickBy } from 'lodash/fp';
-
+import { pipe, isUndefined, omitBy } from 'lodash/fp';
 import { IFetchOptions, FetchMiddleware, NextFn } from '../interfaces';
 import { defaultOptions, stringifyBody } from '../middlewares';
 
 const getRequestOptions = (options: Partial<IFetchOptions>) => {
-  return pickBy(!isUndefined, options);
+  return omitBy(isUndefined, options);
 };
 
 const checkStatus = (response: Response) => {

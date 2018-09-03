@@ -1,4 +1,4 @@
-import { FetchMiddleware, ContentType } from '../lib';
+import { FetchMiddleware, ContentType } from '../interfaces';
 
 export const autoContentType: FetchMiddleware = (options, next) => {
   const type = detectContentType(options.body);

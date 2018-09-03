@@ -7,7 +7,7 @@ import json from 'rollup-plugin-json';
 
 const pkg = require('./package.json');
 
-const libraryName = 'request-data-hoc';
+const libraryName = 'fetch-helper';
 
 export default {
   input: `src/lib.ts`,
@@ -18,7 +18,7 @@ export default {
       format: 'umd',
       sourcemap: true,
       globals: {
-        react: 'React'
+        lodash: 'lodash/fp'
       }
     },
     {
@@ -28,7 +28,7 @@ export default {
     }
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: ['react'],
+  external: ['lodash/fp'],
   watch: {
     include: 'src/**'
   },
