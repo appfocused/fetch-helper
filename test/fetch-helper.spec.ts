@@ -26,6 +26,13 @@ describe('fetch api', () => {
       expect(result.data).toEqual({ foo: 'bar' });
       expect(result.status).toEqual(200);
     });
+
+    it(`should resolve and return an unparsed response`, async () => {
+      const result = await apiFetch({ ...defaultOptions, isParsed: false });
+      expect(result.body).toEqual('{"foo":"bar"}');
+      expect(result.data).toEqual(undefined);
+      expect(result.status).toEqual(200);
+    });
   });
 
   describe('WHEN promise is fulfilled with invalid JSON', () => {
