@@ -12,7 +12,7 @@ const createResponse = pipe(
   JSON.stringify,
   (r: string) => new Response(r)
 );
-const successResponse = () => createResponse({ body: { foo: 'bar' }, ok: true, status: 200 });
+const successResponse = () => createResponse({ foo: 'bar' });
 const errorResponse = () => createResponse({ body: { error: 'bar' }, ok: false, status: 500 });
 
 describe('fetch api', () => {
@@ -23,7 +23,7 @@ describe('fetch api', () => {
 
     it(`should resolve and return a parsed response`, async () => {
       const result = await apiFetch(defaultOptions);
-      expect(result.body).toEqual({ foo: 'bar' });
+      expect(result.data).toEqual({ foo: 'bar' });
       expect(result.status).toEqual(200);
     });
   });

@@ -1,12 +1,12 @@
 import { pipe, isUndefined, omitBy } from 'lodash/fp';
-import { IFetchOptions, FetchMiddleware, NextFn } from '../interfaces';
+import { IFetchOptions, FetchMiddleware, NextFn, IParsedResponse } from '../interfaces';
 import { defaultOptions, stringifyBody } from '../middlewares';
 
 const getRequestOptions = (options: Partial<IFetchOptions>) => {
   return omitBy(isUndefined, options);
 };
 
-const checkStatus = (response: Response) => {
+const checkStatus = (response: IParsedResponse) => {
   const isSuccessful = response.status >= 200 && response.status < 400;
   if (isSuccessful) {
     return response;
@@ -15,12 +15,17 @@ const checkStatus = (response: Response) => {
   throw response;
 };
 
-const parseResponse = (isParsed: boolean = true) => (response: Response) => {
-  if (isParsed) {
-    return response.json ? response.json() : Promise.reject(response);
-  }
+const parseResponse = (isParsed: boolean = true) => async (response: Response) => {
+  const canBeParsed = isParsed && response.json;
+  let data;
 
-  return response;
+  if (canBeParsed) {
+    data = await response.json();
+  }
+  return {
+    ...response,
+    data
+  };
 };
 
 const rawFetch = (nextOptions: IFetchOptions) => {

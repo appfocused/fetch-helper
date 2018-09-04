@@ -38,3 +38,7 @@ interface IRequest {
 
 export type NextFn = (options: IFetchOptions) => IFetchOptions;
 export type FetchMiddleware = (options: IFetchOptions, next: NextFn) => IFetchOptions;
+
+export interface IParsedResponse extends Response {
+  data: any;
+}
