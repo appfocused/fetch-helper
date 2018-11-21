@@ -1,4 +1,5 @@
 # Fetch Helper
+_built with ❤️ at [Appfocused](https://www.appfocused.com)_
 
 ## Rationale
 
